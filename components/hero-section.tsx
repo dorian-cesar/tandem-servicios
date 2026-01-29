@@ -58,7 +58,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col pt-22">
+    <section className="relative flex min-h-screen flex-col pt-20">
       {/* <div className="flex min-h-[20vh] items-center bg-card">
         <div className="mx-auto w-full max-w-7xl px-4 py-8">
           <div className="flex flex-col items-center justify-center gap-10 lg:flex-row lg:justify-around">
