@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Mail,
   Phone,
-  MapPin,
   Instagram,
   Facebook,
   Linkedin,
@@ -43,37 +42,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Marca */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <svg
-                className="h-10 w-10"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="40"
-                  height="40"
-                  rx="8"
-                  fill="currentColor"
-                  className="text-accent"
-                />
-                <path
-                  d="M12 20L20 12L28 20M12 24L20 16L28 24"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <div className="flex flex-col leading-none">
-                <span className="text-lg font-bold text-primary-foreground">
-                  TANDEM
-                </span>
-                <span className="text-xs text-primary-foreground/70 uppercase tracking-wider">
-                  Servicios
-                </span>
-              </div>
-            </div>
+            <Link href="/" className="flex items-center shrink-0 mt-1.5">
+              <Image
+                src="/logo-tandem-servicios.png"
+                alt="Logo Tandem Servicios"
+                width={150}
+                height={40}
+                className="h-12 w-auto object-contain hover:scale-105 transition-transform"
+                priority
+              />
+            </Link>
 
             <p className="text-primary-foreground/80 leading-relaxed text-sm">
               Tu socio estratégico en transporte especializado de personas para
@@ -262,7 +240,7 @@ export function Footer() {
               href="https://wit.la"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium hover:underline"
+              className="font-medium hover:underline hover:text-secondary"
             >
               WIT.la
             </a>

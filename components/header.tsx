@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,41 +38,16 @@ export function Header() {
       <div className="container mx-auto px-4 h-20 flex items-center">
         <div className="flex w-full items-center justify-between">
           {/* LOGO PRINCIPAL */}
-          <div className="flex items-center gap-3 shrink-0">
-            <svg
-              className="h-10 w-10"
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                width="40"
-                height="40"
-                rx="8"
-                fill="currentColor"
-                className="text-primary"
-              />
-              <path
-                d="M12 20L20 12L28 20M12 24L20 16L28 24"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-
-            <div className="flex flex-col leading-none">
-              <span
-                className="text-xl font-bold text-primary"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                TANDEM
-              </span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                Servicios
-              </span>
-            </div>
-          </div>
+          <Link href="/" className="flex items-center shrink-0 mt-1.5">
+            <Image
+              src="/logo-tandem-servicios.png"
+              alt="Logo Tandem Servicios"
+              width={150}
+              height={40}
+              className="h-12 w-auto object-contain hover:scale-105 transition-transform"
+              priority
+            />
+          </Link>
 
           {/* NAV DESKTOP */}
           <nav className="hidden lg:flex items-center gap-8">
