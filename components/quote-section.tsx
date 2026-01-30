@@ -31,13 +31,60 @@ export function CotizadorSection() {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [convenio, setConvenio] = useState("");
+  const [status, setStatus] = useState<"success" | "error" | null>(null);
+  const [statusMessage, setStatusMessage] = useState("");
 
-  const recommendedVehicle =
-    passengers && Number(passengers) > 30
-      ? "Bus"
-      : passengers
-        ? "Van Ejecutiva"
-        : null;
+  const recommendedVehicle = (() => {
+    const p = Number(passengers);
+    if (!p || p <= 0) return null;
+    if (p <= 5) return "Vehículo Menor";
+    if (p <= 20) return "Minibús / Van";
+    if (p <= 45) return "Bus Eléctrico";
+    if (p <= 50) return "Bus Convencional";
+    return null;
+  })();
+
+  const handleSubmit = async () => {
+    const payload = {
+      passengers,
+      serviceType,
+      origin,
+      destination,
+      email,
+      date,
+      description,
+      convenio,
+      recommendedVehicle,
+    };
+
+    const res = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setStatus("error");
+      setStatusMessage(data?.error || "Error al enviar la cotización");
+      return;
+    }
+
+    setStatus("success");
+    setStatusMessage(
+      "Hemos recibido tu solicitud. Nuestro equipo te contactará pronto.",
+    );
+
+    setPassengers("");
+    setServiceType("");
+    setOrigin("");
+    setDestination("");
+    setEmail("");
+    setDate("");
+    setDescription("");
+    setConvenio("");
+  };
 
   return (
     <section
@@ -100,10 +147,12 @@ export function CotizadorSection() {
                     <option value="" disabled>
                       Selecciona un tipo
                     </option>
-                    <option value="economico">Económico</option>
-                    <option value="salon-cama">Salón Cama</option>
-                    <option value="rapido">Rápido</option>
-                    <option value="ejecutivo">Ejecutivo</option>
+                    <option value="Buses Convencionales">
+                      Buses Convencionales
+                    </option>
+                    <option value="Buses Eléctricos">Buses Eléctricos</option>
+                    <option value="Minibuses y Vans">Minibuses y Vans</option>
+                    <option value="Vehículos Menores">Vehículos Menores</option>
                   </select>
                 </div>
 
@@ -147,11 +196,11 @@ export function CotizadorSection() {
                     "
                   >
                     <option value="">Sin convenio</option>
-                    <option value="los-andes">Caja Los Andes</option>
-                    <option value="la-araucana">Caja La Araucana</option>
-                    <option value="18-septiembre">Caja 18 de Septiembre</option>
-                    <option value="los-heroes">Caja Los Héroes</option>
-                    <option value="ips">IPS</option>
+                    <option value="Caja Los Andes">Caja Los Andes</option>
+                    <option value="Caja La Araucana">Caja La Araucana</option>
+                    <option value="Caja 18 de Septiembre">Caja 18 de Septiembre</option>
+                    <option value="Caja Los Héroes">Caja Los Héroes</option>
+                    <option value="IPS">IPS</option>
                   </select>
                 </div>
 
@@ -196,9 +245,21 @@ export function CotizadorSection() {
                 </motion.div>
               )}
 
-              <Button className="mt-8 w-full bg-orange-500 hover:bg-orange-600">
+              <Button
+                onClick={handleSubmit}
+                className="mt-8 w-full bg-orange-500 hover:bg-orange-600"
+              >
                 Solicitar Cotización
               </Button>
+              {status && (
+                <p
+                  className={`mt-3 text-sm text-center ${
+                    status === "success" ? "text-green-800" : "text-red-800"
+                  }`}
+                >
+                  {statusMessage}
+                </p>
+              )}
             </CardContent>
           </Card>
         </motion.div>
