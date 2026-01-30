@@ -21,7 +21,7 @@ const fleet = [
     name: "Buses Convencionales",
     badge: "Más Demandado",
     capacity: "45–50 pasajeros",
-    image: "/placeholder.svg",
+    image: "/images/servicios-1.png",
     features: [
       { icon: Wind, label: "Aire Acondicionado" },
       { icon: Tv, label: "Sistema de Audio / TV" },
@@ -33,7 +33,7 @@ const fleet = [
     name: "Buses Eléctricos",
     badge: "Sustentable",
     capacity: "40–45 pasajeros",
-    image: "/placeholder.svg",
+    image: "/images/servicios-2.png",
     features: [
       { icon: Wind, label: "Climatización Silenciosa" },
       { icon: Usb, label: "Puertos USB" },
@@ -45,7 +45,7 @@ const fleet = [
     name: "Minibuses y Vans",
     badge: "Flexible",
     capacity: "10–20 pasajeros",
-    image: "/placeholder.svg",
+    image: "/images/servicios-3.png",
     features: [
       { icon: Wind, label: "Aire Acondicionado" },
       { icon: Usb, label: "Carga USB" },
@@ -54,10 +54,10 @@ const fleet = [
     ],
   },
   {
-    name: "Buses y Minibuses",
+    name: "Vehículos Menores",
     badge: null,
-    capacity: "20–45 pasajeros",
-    image: "/placeholder.svg",
+    capacity: "4-5 pasajeros",
+    image: "/images/servicios-4.png",
     features: [
       { icon: Wind, label: "Climatización" },
       { icon: Tv, label: "Audio / Video" },
@@ -79,14 +79,14 @@ export function FleetSection() {
             fleet.forEach((_, index) => {
               setTimeout(() => {
                 setVisibleCards((prev) =>
-                  prev.includes(index) ? prev : [...prev, index]
+                  prev.includes(index) ? prev : [...prev, index],
                 );
               }, index * 150);
             });
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {

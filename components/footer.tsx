@@ -44,7 +44,7 @@ export function Footer() {
           <div>
             <Link href="/" className="flex items-center shrink-0 mt-1.5">
               <Image
-                src="/logo-tandem-servicios.png"
+                src="/logo-tandem-servicios-blanco.png"
                 alt="Logo Tandem Servicios"
                 width={150}
                 height={40}
