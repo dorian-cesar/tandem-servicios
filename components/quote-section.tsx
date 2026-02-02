@@ -198,9 +198,9 @@ export function CotizadorSection() {
                     <option value="">Sin convenio</option>
                     <option value="Caja Los Andes">Caja Los Andes</option>
                     <option value="Caja La Araucana">Caja La Araucana</option>
-                    <option value="Caja 18 de Septiembre">Caja 18 de Septiembre</option>
+                    {/* <option value="Caja 18 de Septiembre">Caja 18 de Septiembre</option>
                     <option value="Caja Los Héroes">Caja Los Héroes</option>
-                    <option value="IPS">IPS</option>
+                    <option value="IPS">IPS</option> */}
                   </select>
                 </div>
 
